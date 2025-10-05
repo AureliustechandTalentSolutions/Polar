@@ -88,3 +88,4 @@ complexity of the build environment and speeding up the build process.
 
 ## Additional Resources
 * [Polar: Improving DevSecOps Observability](https://insights.sei.cmu.edu/blog/polar-improving-devsecops-observability/): Blog that provides comprehensive insights into Polar's architecture, components, and capabilities.
+* [Aurelius Federal Platform Resource Library](docs/resources/aurelius-federal-platform-resource.md): Documentation for using Polar as a registered resource in the Aurelius Federal Platform.

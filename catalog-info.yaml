@@ -1,0 +1,95 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: polar
+  title: Polar Knowledge Graph Framework
+  description: |
+    Polar is a knowledge graph framework that collects infrastructure data and loads it into a graph database.
+    It is designed for DevSecOps observability, featuring modular agents, pub/sub messaging, mutual TLS, 
+    and external observation of services and infrastructure. Polar is inspired by the original Mercator 
+    project, bringing modern software practices and architecture.
+  annotations:
+    github.com/project-slug: AureliustechandTalentSolutions/Polar
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - knowledge-graph
+    - observability
+    - devsecops
+    - infrastructure
+    - neo4j
+    - rust
+    - kubernetes
+    - gitlab
+    - security
+    - mtls
+  links:
+    - url: https://github.com/AureliustechandTalentSolutions/Polar
+      title: GitHub Repository
+      icon: github
+    - url: https://insights.sei.cmu.edu/blog/polar-improving-devsecops-observability/
+      title: SEI Blog - Polar DevSecOps Observability
+      icon: article
+spec:
+  type: service
+  lifecycle: production
+  owner: aurelius-tech-talent-solutions
+  system: aurelius-federal-platform
+  providesApis:
+    - polar-api
+  consumesApis:
+    - neo4j
+    - rabbitmq
+  dependsOn:
+    - component:neo4j
+    - component:rabbitmq
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: polar-api
+  title: Polar Framework API
+  description: API for interacting with Polar agents and the knowledge graph
+  tags:
+    - graphql
+    - rest
+    - knowledge-graph
+spec:
+  type: openapi
+  lifecycle: production
+  owner: aurelius-tech-talent-solutions
+  system: aurelius-federal-platform
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Polar Framework API
+      version: 1.0.0
+      description: API for interacting with Polar knowledge graph framework
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: polar-neo4j-database
+  title: Polar Neo4j Graph Database
+  description: Neo4j graph database instance used by Polar for storing infrastructure knowledge
+  tags:
+    - database
+    - neo4j
+    - graph
+spec:
+  type: database
+  owner: aurelius-tech-talent-solutions
+  system: aurelius-federal-platform
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: aurelius-federal-platform
+  title: Aurelius Federal Platform
+  description: Enterprise platform for federal deployments and resource management
+  tags:
+    - platform
+    - federal
+    - enterprise
+spec:
+  owner: aurelius-tech-talent-solutions
+  domain: infrastructure
